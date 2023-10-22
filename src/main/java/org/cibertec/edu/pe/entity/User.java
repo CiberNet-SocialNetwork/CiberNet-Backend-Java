@@ -26,4 +26,6 @@ public class User {
 	private String imageUrl;
 	@OneToMany(mappedBy = "user")
 	private Set<Post> posts;
+	@OneToMany(mappedBy = "user")
+	private Set<Comment> comments;
 }
