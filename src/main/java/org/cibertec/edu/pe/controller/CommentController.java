@@ -33,7 +33,7 @@ public class CommentController {
 		return commentService.findById(id);
 	}
 	
-	@GetMapping("/findPostsByUserId/{userId}")
+	@GetMapping("/findCommentsByUserId/{userId}")
 	public List<Comment> findCommentsByUserId(@PathVariable Long userId) {
 		return commentService.findCommentsByUserId(userId);
 	}
