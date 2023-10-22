@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<User> findAll() {
-		return (List<User>)userRepository.findAll();
+		return (List<User>) userRepository.findAll();
 	}
 
 	@Override
@@ -27,10 +27,19 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public ResponseDTO createUser(User user) {
-		User dbUser = userRepository.findByUsername(user.getUsername());
-		if(dbUser == null) dbUser = userRepository.save(user);
 		ResponseDTO response = new ResponseDTO();
-		response.setData(dbUser);
+		User dbUser = userRepository.findByUsername(user.getUsername());
+		if(dbUser == null) {
+			dbUser = userRepository.save(user);
+			response.setData(dbUser);
+			response.setStatusCode(201);
+			response.setError(false);
+			response.setMessage("User created succesfully");
+		} else {
+			response.setStatusCode(400);
+			response.setError(true);
+			response.setMessage("Username already exists");
+		}
 		return response;
 	}
 
