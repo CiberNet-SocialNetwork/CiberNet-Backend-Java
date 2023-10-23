@@ -38,11 +38,18 @@ public class CommentServiceImpl implements CommentService{
 	@Override
 	public ResponseDTO createComment(Comment comment) {
 		ResponseDTO response = new ResponseDTO();
-		Comment dbComment = commentRepository.save(comment);
-		response.setData(dbComment);
-		response.setStatusCode(201);
-		response.setError(false);
-		response.setMessage("Comment created succesfully");
+		try {
+			Comment dbComment = commentRepository.save(comment);
+			response.setData(dbComment);
+			response.setStatusCode(201);
+			response.setError(false);
+			response.setMessage("Comment created succesfully");			
+		}catch(Exception e) {
+			response.setData(e.getMessage());
+			response.setStatusCode(500);
+			response.setError(false);
+			response.setMessage("Error creating comment");	
+		}
 		return response;
 	}
 
