@@ -48,14 +48,37 @@ public class CommentServiceImpl implements CommentService{
 
 	@Override
 	public ResponseDTO updateComment(Long id, Comment comment) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseDTO response = new ResponseDTO();
+		Comment dbComment = commentRepository.findById(id).get();
+		dbComment.setContent(comment.getContent());
+		dbComment.setPost(comment.getPost());
+		dbComment.setPublicationDate(comment.getPublicationDate());
+		dbComment.setUser(comment.getUser());
+		Comment newComment = commentRepository.save(dbComment);
+		response.setData(newComment);
+		response.setStatusCode(201);
+		response.setError(false);
+		response.setMessage("Comment updated succesfully");
+		return response;
 	}
 
 	@Override
 	public ResponseDTO deleteComment(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseDTO response = new ResponseDTO();
+		Comment dbComment = commentRepository.findById(id).get();
+		try {
+			commentRepository.delete(dbComment);
+			response.setData(dbComment);
+			response.setStatusCode(200);
+			response.setError(false);
+			response.setMessage("Comment deleted succesfully");
+		}catch (Exception e) {
+			response.setData(e.getMessage());
+			response.setStatusCode(500);
+			response.setError(true);
+			response.setMessage("Error while deleting comment");
+		}
+		return response;
 	}
 
 }
