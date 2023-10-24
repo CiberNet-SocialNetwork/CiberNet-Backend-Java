@@ -3,6 +3,7 @@ package org.cibertec.edu.pe.service.impl;
 import java.util.List;
 
 import org.cibertec.edu.pe.dto.ResponseDTO;
+import org.cibertec.edu.pe.dto.UserRequestDTO;
 import org.cibertec.edu.pe.entity.User;
 import org.cibertec.edu.pe.repository.UserRepository;
 import org.cibertec.edu.pe.service.UserService;
@@ -26,11 +27,19 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public ResponseDTO createUser(User user) {
+	public ResponseDTO createUser(UserRequestDTO user) {
 		ResponseDTO response = new ResponseDTO();
 		User dbUser = userRepository.findByUsername(user.getUsername());
 		if(dbUser == null) {
-			dbUser = userRepository.save(user);
+			User newUser = new User();
+			newUser.setUsername(user.getUsername());
+			newUser.setPassword(user.getPassword());
+			newUser.setEmail(user.getEmail());
+			newUser.setFirstName(user.getFirstName());
+			newUser.setLastName(user.getLastName());
+			newUser.setPhone(user.getPhone());
+			newUser.setImageUrl(user.getImageUrl());
+			dbUser = userRepository.save(newUser);
 			response.setData(dbUser);
 			response.setStatusCode(201);
 			response.setError(false);
