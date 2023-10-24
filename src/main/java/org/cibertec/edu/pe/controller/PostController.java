@@ -2,6 +2,7 @@ package org.cibertec.edu.pe.controller;
 
 import java.util.List;
 
+import org.cibertec.edu.pe.dto.PostRequestDTO;
 import org.cibertec.edu.pe.dto.ResponseDTO;
 import org.cibertec.edu.pe.entity.Post;
 import org.cibertec.edu.pe.service.PostService;
@@ -39,12 +40,12 @@ public class PostController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseDTO createPost(Post post) {
+	public ResponseDTO createPost(PostRequestDTO post) {
 		return postService.createPost(post);
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseDTO updatePost(@PathVariable Long id, @RequestBody Post post) {
+	public ResponseDTO updatePost(@PathVariable Long id, @RequestBody PostRequestDTO post) {
 		return postService.updatePost(id, post);
 	}
 	

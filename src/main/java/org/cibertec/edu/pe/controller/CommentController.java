@@ -2,6 +2,7 @@ package org.cibertec.edu.pe.controller;
 
 import java.util.List;
 
+import org.cibertec.edu.pe.dto.CommentRequestDTO;
 import org.cibertec.edu.pe.dto.ResponseDTO;
 import org.cibertec.edu.pe.entity.Comment;
 import org.cibertec.edu.pe.service.CommentService;
@@ -44,12 +45,12 @@ public class CommentController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseDTO createComment(Comment comment) {
+	public ResponseDTO createComment(CommentRequestDTO comment) {
 		return commentService.createComment(comment);
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseDTO updateComment(@PathVariable Long id, @RequestBody Comment comment) {
+	public ResponseDTO updateComment(@PathVariable Long id, @RequestBody CommentRequestDTO comment) {
 		return commentService.updateComment(id, comment);
 	}
 	

@@ -1,8 +1,7 @@
 package org.cibertec.edu.pe.entity;
 
-import java.util.Date;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,11 +16,11 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String content;
-	private Date publicationDate;
-	@ManyToOne
+	private String publicationDate;
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="postId")
 	private Post post;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="userId")
 	private User user;
 }

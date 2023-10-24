@@ -3,6 +3,7 @@ package org.cibertec.edu.pe.controller;
 import java.util.List;
 
 import org.cibertec.edu.pe.dto.ResponseDTO;
+import org.cibertec.edu.pe.dto.UserRequestDTO;
 import org.cibertec.edu.pe.entity.User;
 import org.cibertec.edu.pe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseDTO createUser(User user) {
+	public ResponseDTO createUser(UserRequestDTO user) {
 		return userService.createUser(user);
 	}
 	

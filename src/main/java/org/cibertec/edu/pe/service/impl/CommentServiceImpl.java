@@ -2,9 +2,12 @@ package org.cibertec.edu.pe.service.impl;
 
 import java.util.List;
 
+import org.cibertec.edu.pe.dto.CommentRequestDTO;
 import org.cibertec.edu.pe.dto.ResponseDTO;
 import org.cibertec.edu.pe.entity.Comment;
 import org.cibertec.edu.pe.repository.CommentRepository;
+import org.cibertec.edu.pe.repository.PostRepository;
+import org.cibertec.edu.pe.repository.UserRepository;
 import org.cibertec.edu.pe.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,10 @@ public class CommentServiceImpl implements CommentService{
 	
 	@Autowired
 	private CommentRepository commentRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private PostRepository postRepository;
 
 	@Override
 	public List<Comment> findAll() {
@@ -36,10 +43,10 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public ResponseDTO createComment(Comment comment) {
+	public ResponseDTO createComment(CommentRequestDTO comment) {
 		ResponseDTO response = new ResponseDTO();
 		try {
-			Comment dbComment = commentRepository.save(comment);
+			Comment dbComment = commentRepository.save(new Comment());
 			response.setData(dbComment);
 			response.setStatusCode(201);
 			response.setError(false);
@@ -54,13 +61,13 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public ResponseDTO updateComment(Long id, Comment comment) {
+	public ResponseDTO updateComment(Long id, CommentRequestDTO comment) {
 		ResponseDTO response = new ResponseDTO();
 		Comment dbComment = commentRepository.findById(id).get();
 		dbComment.setContent(comment.getContent());
-		dbComment.setPost(comment.getPost());
+		dbComment.setPost(postRepository.findById(comment.getPostId()).orElseThrow(null));
 		dbComment.setPublicationDate(comment.getPublicationDate());
-		dbComment.setUser(comment.getUser());
+		dbComment.setUser(userRepository.findById(comment.getUserId()).orElseThrow(null));
 		Comment newComment = commentRepository.save(dbComment);
 		response.setData(newComment);
 		response.setStatusCode(201);
