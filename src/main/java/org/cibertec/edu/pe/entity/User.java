@@ -2,6 +2,8 @@ package org.cibertec.edu.pe.entity;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,8 +28,10 @@ public class User {
 	private String phone;
 	private String imageUrl;
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<Post> posts;
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<Comment> comments;
 	
 	public Long getId() {

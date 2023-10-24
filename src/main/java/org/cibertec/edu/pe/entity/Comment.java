@@ -1,5 +1,8 @@
 package org.cibertec.edu.pe.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,9 +22,12 @@ public class Comment {
 	private String publicationDate;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="postId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnore
 	private Post post;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="userId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private User user;
 	
 	public Long getId() {
