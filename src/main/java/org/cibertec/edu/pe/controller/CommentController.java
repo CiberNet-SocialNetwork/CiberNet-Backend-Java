@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/comment")
@@ -25,27 +25,27 @@ public class CommentController {
 	private CommentService commentService;
 	
 	@GetMapping("/findAll")
-	public List<Comment> findAll(){
+	public ResponseDTO findAll(){
 		return commentService.findAll();
 	}
 	
 	@GetMapping("/findById/{id}")
-	public Comment findById(@PathVariable Long id) {
+	public ResponseDTO findById(@PathVariable Long id) {
 		return commentService.findById(id);
 	}
 	
 	@GetMapping("/findCommentsByUserId/{userId}")
-	public List<Comment> findCommentsByUserId(@PathVariable Long userId) {
+	public ResponseDTO findCommentsByUserId(@PathVariable Long userId) {
 		return commentService.findCommentsByUserId(userId);
 	}
 	
 	@GetMapping("/findCommentsByPostId/{postId}")
-	public List<Comment> findCommentsByPostId(@PathVariable Long postId) {
+	public ResponseDTO findCommentsByPostId(@PathVariable Long postId) {
 		return commentService.findCommentsByPostId(postId);
 	}
 	
 	@PostMapping("/create")
-	public ResponseDTO createComment(CommentRequestDTO comment) {
+	public ResponseDTO createComment(@RequestBody CommentRequestDTO comment) {
 		return commentService.createComment(comment);
 	}
 	
@@ -56,7 +56,6 @@ public class CommentController {
 	
 	@DeleteMapping("/delete/{id}")
     public ResponseDTO deleteComment(@PathVariable Long id){
-		commentService.deleteComment(id);
-        return null;
+        return commentService.deleteComment(id);
     }
 }
