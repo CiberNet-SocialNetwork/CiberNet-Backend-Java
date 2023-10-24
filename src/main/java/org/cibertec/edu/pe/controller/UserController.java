@@ -7,6 +7,7 @@ import org.cibertec.edu.pe.dto.UserRequestDTO;
 import org.cibertec.edu.pe.entity.User;
 import org.cibertec.edu.pe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 	
 	@Autowired
@@ -40,7 +42,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseDTO createUser(UserRequestDTO user) {
+	public ResponseDTO createUser(@RequestBody UserRequestDTO user) {
 		return userService.createUser(user);
 	}
 	
