@@ -7,6 +7,7 @@ import org.cibertec.edu.pe.dto.ResponseDTO;
 import org.cibertec.edu.pe.entity.Post;
 import org.cibertec.edu.pe.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/post")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostController {
 
 	@Autowired
@@ -40,7 +42,7 @@ public class PostController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseDTO createPost(PostRequestDTO post) {
+	public ResponseDTO createPost(@RequestBody PostRequestDTO post) {
 		return postService.createPost(post);
 	}
 	

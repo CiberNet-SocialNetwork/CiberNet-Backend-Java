@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public ResponseDTO createUser(UserRequestDTO user) {
 		ResponseDTO response = new ResponseDTO();
+		System.out.println(user.getUsername()+user.getFirstName());
 		User dbUser = userRepository.findByUsername(user.getUsername());
 		if(dbUser == null) {
 			User newUser = new User();

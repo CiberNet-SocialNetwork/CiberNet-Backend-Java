@@ -1,12 +1,10 @@
 package org.cibertec.edu.pe.controller;
 
-import java.util.List;
-
 import org.cibertec.edu.pe.dto.CommentRequestDTO;
 import org.cibertec.edu.pe.dto.ResponseDTO;
-import org.cibertec.edu.pe.entity.Comment;
 import org.cibertec.edu.pe.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/comment")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CommentController {
 	
 	@Autowired
