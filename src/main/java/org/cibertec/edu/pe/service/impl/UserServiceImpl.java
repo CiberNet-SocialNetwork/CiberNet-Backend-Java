@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService{
 	public User findById(Long id) {
 		return userRepository.findById(id).orElseThrow(null);
 	}
+	
 	@Override
 	public ResponseDTO createUser(UserRequestDTO user) {
 		ResponseDTO response = new ResponseDTO();
@@ -52,19 +53,19 @@ public class UserServiceImpl implements UserService{
 		return response;
 	}
 
-
-
-
-	
-
 	@Override
 	public ResponseDTO updateUser(Long id, User user) {
 	    ResponseDTO response = new ResponseDTO();
 	    User existingUser = userRepository.findById(id).orElse(null);
 	    if (existingUser != null) {
 	        existingUser.setUsername(user.getUsername());
+	        existingUser.setPassword(user.getPassword());
 	        existingUser.setEmail(user.getEmail());
-
+	        existingUser.setFirstName(user.getFirstName());
+	        existingUser.setLastName(user.getLastName());
+	        existingUser.setPhone(user.getPhone());
+	        existingUser.setImageUrl(user.getImageUrl());
+	        
 	        userRepository.save(existingUser);
 	        
 	        response.setData(existingUser);
