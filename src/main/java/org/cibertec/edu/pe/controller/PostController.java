@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.cibertec.edu.pe.dto.ResponseDTO;
 import org.cibertec.edu.pe.entity.Post;
+import org.cibertec.edu.pe.repository.PostRepository;
 import org.cibertec.edu.pe.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
