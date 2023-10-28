@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.cibertec.edu.pe.dto.PostRequestDTO;
 import org.cibertec.edu.pe.dto.ResponseDTO;
+
 import org.cibertec.edu.pe.entity.Post;
 import org.cibertec.edu.pe.entity.User;
 import org.cibertec.edu.pe.repository.PostRepository;
@@ -54,14 +55,37 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public ResponseDTO updatePost(Long id, PostRequestDTO post) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseDTO response = new ResponseDTO();
+		Post dbPost = postRepository.findById(id).get();
+		dbPost.setTitle(post.getTitle());
+		dbPost.setContent(post.getContent());
+		dbPost.setImageUrl(post.getImageUrl());
+		dbPost.setPublicationDate(post.getPublicationDate());
+		Post newComment = postRepository.save(dbPost);
+		response.setData(newComment);
+		response.setStatusCode(201);
+		response.setError(false);
+		response.setMessage("Post updated succesfully");
+		return response;
 	}
-
+	
 	@Override
 	public ResponseDTO deletePost(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseDTO response = new ResponseDTO();
+		Post dbPost = postRepository.findById(id).get();
+		try {
+			postRepository.delete(dbPost);
+			response.setData(dbPost);
+			response.setStatusCode(200);
+			response.setError(false);
+			response.setMessage("Post deleted succesfully");
+		}catch (Exception e) {
+			response.setData(e.getMessage());
+			response.setStatusCode(500);
+			response.setError(true);
+			response.setMessage("Error while deleting post");
+		}
+		return response;
 	}
 
 }
