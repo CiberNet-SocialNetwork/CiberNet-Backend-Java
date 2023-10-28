@@ -1,9 +1,12 @@
 package org.cibertec.edu.pe.entity;
 
-import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,10 +24,13 @@ public class Post {
 	private String title;
 	private String content;
 	private String imageUrl;
-	public Date publicationDate;
-	@ManyToOne
+	private String publicationDate;
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="userId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private User user;
-	@OneToMany(mappedBy = "post")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnore
 	private Set<Comment> comments;
 }
