@@ -59,8 +59,13 @@ public class UserServiceImpl implements UserService{
 	    User existingUser = userRepository.findById(id).orElse(null);
 	    if (existingUser != null) {
 	        existingUser.setUsername(user.getUsername());
+	        existingUser.setPassword(user.getPassword());
 	        existingUser.setEmail(user.getEmail());
-
+	        existingUser.setFirstName(user.getFirstName());
+	        existingUser.setLastName(user.getLastName());
+	        existingUser.setPhone(user.getPhone());
+	        existingUser.setImageUrl(user.getImageUrl());
+	        
 	        userRepository.save(existingUser);
 	        
 	        response.setData(existingUser);
