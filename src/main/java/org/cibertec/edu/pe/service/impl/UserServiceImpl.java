@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findById(id).orElseThrow(null);
 	}
 
+
 	@Override
 	public ResponseDTO createUser(UserRequestDTO user) {
 		ResponseDTO response = new ResponseDTO();
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService{
 		return response;
 	}
 
+	
 	@Override
 	public ResponseDTO updateUser(Long id, User user) {
 	    ResponseDTO response = new ResponseDTO();
