@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public User findUserByName(String username) {
+	    return userRepository.findByUsername(username);
+	}
+	
+	@Override
 	public ResponseDTO createUser(UserRequestDTO user) {
 		ResponseDTO response = new ResponseDTO();
 		System.out.println(user.getUsername()+user.getFirstName());
