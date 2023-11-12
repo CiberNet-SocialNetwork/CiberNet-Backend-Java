@@ -36,6 +36,11 @@ public class UserController {
 		return userService.findById(id);
 	}
 	
+	@GetMapping("/findByName/{username}")
+	public User findUserByName(@PathVariable String username) {
+	    return userService.findUserByName(username);
+	}
+	
 	@PostMapping("/login")
 	public ResponseDTO login(@RequestBody User user) {
 		return userService.login(user.getUsername(), user.getPassword());
