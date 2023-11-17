@@ -33,6 +33,9 @@ public class User {
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Set<Comment> comments;
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<Issue> issues;
 	
 	public Long getId() {
 		return id;
