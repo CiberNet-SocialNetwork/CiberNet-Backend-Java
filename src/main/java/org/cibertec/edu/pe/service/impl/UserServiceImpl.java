@@ -32,6 +32,20 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public ResponseDTO findByUsernameContainingIgnoreCase(String username) {
+		// TODO Auto-generated method stub
+		ResponseDTO response = new ResponseDTO();
+		List<User> listUser = userRepository.findByUsernameContainingIgnoreCase(username);
+		
+			response.setData(listUser);
+			response.setStatusCode(200);
+			response.setError(false);
+			response.setMessage("List of users matching "+ username);
+		return response;
+		
+	}
+	
+	@Override
 	public ResponseDTO createUser(UserRequestDTO user) {
 		ResponseDTO response = new ResponseDTO();
 		System.out.println(user.getUsername()+user.getFirstName());
