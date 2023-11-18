@@ -6,7 +6,7 @@ import org.cibertec.edu.pe.dto.ResponseDTO;
 public interface IssueService {
 	public ResponseDTO findAll();
 	public ResponseDTO findById(Long id);
-	public ResponseDTO createIssue(IssueRequestDTO post);
-	public ResponseDTO updateIssue(Long id, IssueRequestDTO post);
+	public ResponseDTO createIssue(IssueRequestDTO issue);
+	public ResponseDTO updateIssue(Long id, IssueRequestDTO issue);
 	public ResponseDTO deleteIssue(Long id);
 }

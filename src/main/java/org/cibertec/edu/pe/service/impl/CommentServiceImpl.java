@@ -163,7 +163,6 @@ public class CommentServiceImpl implements CommentService{
 			response.setError(false);
 			response.setMessage("Comment deleted succesfully");
 		}catch (Exception e) {
-			System.out.println(e.getStackTrace());
 			response.setData(e.getMessage());
 			response.setStatusCode(500);
 			response.setError(true);
