@@ -10,6 +10,7 @@ public interface UserService {
 	public List<User> findAll();
 	public User findById(Long id);
 	public User findUserByName(String username);
+	public ResponseDTO findByUsernameContainingIgnoreCase(String username);
 	public ResponseDTO createUser(UserRequestDTO user);
 	public ResponseDTO updateUser(Long id, User user);
 	public ResponseDTO deleteUser(Long id);
