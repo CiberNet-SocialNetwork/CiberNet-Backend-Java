@@ -10,7 +10,9 @@ import org.cibertec.edu.pe.repository.IssueRepository;
 import org.cibertec.edu.pe.repository.UserRepository;
 import org.cibertec.edu.pe.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class IssueServiceImpl implements IssueService{
 
 	@Autowired
