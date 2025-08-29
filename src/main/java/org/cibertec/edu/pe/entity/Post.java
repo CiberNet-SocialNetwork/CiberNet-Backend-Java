@@ -33,4 +33,48 @@ public class Post {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonIgnore
 	private Set<Comment> comments;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public String getPublicationDate() {
+		return publicationDate;
+	}
+	public void setPublicationDate(String publicationDate) {
+		this.publicationDate = publicationDate;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	
 }
